@@ -17,7 +17,8 @@ Add the following action to your workflow:
 
 ```
 action "Run Variant Task" {
-  uses = "mumoshu/github-actions/variant@master"
+  #uses = "mumoshu/github-actions/variant@master"
+  uses = "docker://mumoshu/github-actions-variant:dev""
 
   # See Environment Variables below for details.
   env = {

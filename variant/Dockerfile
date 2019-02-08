@@ -2,7 +2,7 @@ FROM alpine:3.8
 
 LABEL "com.github.actions.name"="Run Variant Task"
 LABEL "com.github.actions.description"="Run Variant task defined in your Variantfile https://github.com/mumoshu/variant"
-LABEL "com.github.actions.icon"="mic"
+LABEL "com.github.actions.icon"="octagon"
 LABEL "com.github.actions.color"="orange"
 
 LABEL "repository"="http://github.com/mumoshu/github-actions"
