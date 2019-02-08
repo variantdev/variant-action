@@ -1,0 +1,8 @@
+parameters:
+- name: event
+  type: object
+  default: "/github/workflow/event.json"
+script: |
+  cat <<EOF
+  {{ get "event" | toYaml }}
+  EOF
