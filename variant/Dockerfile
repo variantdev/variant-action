@@ -24,4 +24,5 @@ RUN cd /usr/local/bin && \
   curl -L https://github.com/mumoshu/variant/releases/download/v0.21.2/variant_0.21.2_linux_amd64.tar.gz | tar zxvf - && \
   rm README.md
 
-CMD [ "/usr/local/bin/variant" ]
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
