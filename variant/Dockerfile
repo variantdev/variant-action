@@ -5,6 +5,10 @@ LABEL "com.github.actions.description"="Run Variant task defined in your Variant
 LABEL "com.github.actions.icon"="mic"
 LABEL "com.github.actions.color"="orange"
 
+LABEL "repository"="http://github.com/mumoshu/github-actions"
+LABEL "homepage"="http://github.com/mumoshu/github-actions"
+LABEL "maintainer"="Yusuke KUOKA <ykuoka@gmail.com>"
+
 # Install all packages as root
 USER root
 
