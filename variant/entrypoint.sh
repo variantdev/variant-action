@@ -16,7 +16,9 @@ if [ "$VARIANT_COMMENT" = "1" ] || [ "$VARIANT_COMMENT" = "false" ]; then
     exit $SUCCESS
 fi
 
-COMMENT="#### \`variant $*\` Failed
+VARIANT_NAME=${variant:-variant}
+
+COMMENT="#### \`$VARIANT_NAME $*\` Failed
 \`\`\`
 $OUTPUT
 \`\`\`"

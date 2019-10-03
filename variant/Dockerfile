@@ -1,12 +1,12 @@
-FROM alpine:3.8
+FROM alpine:3.10
 
 LABEL "com.github.actions.name"="Run Variant Task"
 LABEL "com.github.actions.description"="Run Variant task defined in your Variantfile https://github.com/mumoshu/variant"
 LABEL "com.github.actions.icon"="octagon"
 LABEL "com.github.actions.color"="orange"
 
-LABEL "repository"="http://github.com/mumoshu/github-actions"
-LABEL "homepage"="http://github.com/mumoshu/github-actions"
+LABEL "repository"="http://github.com/variantdev/variant-action"
+LABEL "homepage"="http://github.com/variantdev/variant-action"
 LABEL "maintainer"="Yusuke KUOKA <ykuoka@gmail.com>"
 
 # Install all packages as root
@@ -20,8 +20,10 @@ RUN apk add --update --no-cache bash curl \
   slack-notifier@cloudposse \
   github-commenter@cloudposse
 
+ENV VARIANT_VERSION 0.34.0
+
 RUN cd /usr/local/bin && \
-  curl -L https://github.com/mumoshu/variant/releases/download/v0.21.2/variant_0.21.2_linux_amd64.tar.gz | tar zxvf - && \
+  curl -L https://github.com/mumoshu/variant/releases/download/v${VARIANT_VERSION}/variant_{$VARIANT_VERSION}_linux_amd64.tar.gz | tar zxvf - && \
   rm README.md
 
 COPY entrypoint.sh /entrypoint.sh

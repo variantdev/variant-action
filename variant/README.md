@@ -39,6 +39,8 @@ action "Run Variant Task" {
 
 *VARIANT_COMMENT*: Set to "false" to disable commenting back on pull on error. Default: `true`
 
+*VARIANT_NAME*: Name of your application that is shown in error messages sent via GitHub issue/pr comments. Default: `variant`
+
 ## Secrets
 
 `GITHUB_TOKEN`: Required for posting a comment back to the pull request if `variant` fails.
