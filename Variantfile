@@ -6,3 +6,8 @@ script: |
   cat <<EOF
   {{ get "event" | toYaml }}
   EOF
+
+tasks:
+  foo:
+    script: |
+      echo foo!
