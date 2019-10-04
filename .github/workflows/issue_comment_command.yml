@@ -17,4 +17,6 @@ jobs:
         VARIANT_COMMENT: "true"
         VARIANT_RUN: ${{ github.event.comment.body }}
         VARIANT_RUN_TRIM_PREFIX: /
+      with:
+        args: --color=false
       if: startsWith(github.event.comment.body, '/')
