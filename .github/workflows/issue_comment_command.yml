@@ -15,5 +15,5 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         VARIANT_WORKING_DIR: "."
         VARIANT_COMMENT: "true"
-      run: bash -c 'args=${{ github.event.issue_comment.body }}; args=${args#/}; /entrypoint.sh $args'
+      args: ${{ github.event.issue_comment.body }}
       if: startsWith(github.event.issue_comment.body, '/')
