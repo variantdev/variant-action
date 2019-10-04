@@ -1,4 +1,4 @@
-name: 'Variant'
+name: 'VariantRun'
 description: 'Run Variant task defined in your Variantfile https://github.com/mumoshu/variant'
 runs:
   using: 'docker'
