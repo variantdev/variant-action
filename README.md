@@ -16,21 +16,29 @@ script: |
 Add the following action to your workflow:
 
 ```
-action "Run Variant Task" {
-  #uses = "mumoshu/github-actions/variant@master"
-  uses = "docker://mumoshu/github-actions-variant:dev""
+name: Do something
+on:
+  # https://help.github.com/en/articles/events-that-trigger-workflows#pull-request-event-pull_request
+  pull_request:
+    # Defaults to [opened, synchronize, reopened] so specifically set types when you want more:
+    types: [opened, reopened, edited, milestoned, demilestoned, labeled, unlabeled, synchronize ]
+  # https://help.github.com/en/articles/events-that-trigger-workflows#issues-event-issues
+  issues:
+    types: [opened, reopened, edited, milestoned, demilestoned, labeled, unlabeled]
 
-  # See Environment Variables below for details.
-  env = {
-    VARIANT_WORKING_DIR = "."
-    VARIANT_COMMENT = "true"
-  }
-
-  # We need the GitHub token to be able to comment back on the pull request.
-  secrets = ["GITHUB_TOKEN"]
-
-  args = ""
-}
+jobs:
+  run:
+    name: variant
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v1
+    - uses: variantdev/variant-action@v0.3.4
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        VARIANT_WORKING_DIR: "."
+        VARIANT_COMMENT: "true"
+      with:
+        #args: up --build --pull-request
 ```
 
 ## Environment Variables
