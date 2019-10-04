@@ -47,7 +47,7 @@ COMMENTS_URL=$(cat /github/workflow/event.json | jq -r .pull_request.comments_ur
 if [ "$COMMENTS_URL" == "null" -o "$COMMENTS_URL" != "" ]; then
   COMMENTS_URL=$(cat /github/workflow/event.json | jq -r .issue.comments_url || true)
 fi
-if [ "$COMMENTS_URL" == "null" -a "$COMMENTS_URL" != "" ]; then
+if [ "$COMMENTS_URL" != "null" -a "$COMMENTS_URL" != "" ]; then
   curl -s -S -H "Authorization: token $GITHUB_TOKEN" --header "Content-Type: application/json" --data "$PAYLOAD" "$COMMENTS_URL" > /dev/null
 fi
 
