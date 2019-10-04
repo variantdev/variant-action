@@ -18,6 +18,8 @@ SUCCESS=$?
 echo "$OUTPUT"
 set -e
 
+set -vx
+
 if [ $SUCCESS -eq 0 ]; then
     exit 0
 fi
