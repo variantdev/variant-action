@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 cat << EOS > $HOME/.netrc
@@ -13,24 +13,30 @@ git config --global user.name "${GITHUB_ACTOR}"
 cd "${VARIANT_WORKING_DIR:-.}"
 
 set +e
-OUTPUT=$(sh -c "variant $*" 2>&1)
-SUCCESS=$?
+variant "$@" 2>&1 | tee log.txt
+SUCCESS=${PIPESTATUS[0]}
+OUTPUT=$(cat log.txt)
 echo "$OUTPUT"
 set -e
 
 set -vx
 
-if [ $SUCCESS -eq 0 ]; then
-    exit 0
-fi
-
-if [ "$VARIANT_COMMENT" = "1" ] || [ "$VARIANT_COMMENT" = "false" ]; then
+if [ "$VARIANT_COMMENT" = "0" ] || [ "$VARIANT_COMMENT" = "false" ]; then
     exit $SUCCESS
 fi
 
+if [ $SUCCESS -eq 0 -a "$VARIANT_COMMENT_ON_SUCCESS" = "0" ]; then
+    exit 0
+fi
+
+if [ $SUCCESS -ne 0 -a "$VARIANT_COMMENT_ON_FAILURE" = "0" ]; then
+    exit $SUCCESS
+fi
+
+
 VARIANT_NAME=${variant:-variant}
 
-COMMENT="#### \`$VARIANT_NAME $*\` Failed
+COMMENT="#### \`$VARIANT_NAME $*\` Status: ${SUCCESS}
 \`\`\`
 $OUTPUT
 \`\`\`"
