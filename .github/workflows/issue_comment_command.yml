@@ -15,5 +15,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         VARIANT_WORKING_DIR: "."
         VARIANT_COMMENT: "true"
-      args: ${{ github.event.issue_comment.body }}
+      with:
+        args: ${{ github.event.issue_comment.body }}
       if: startsWith(github.event.issue_comment.body, '/')
