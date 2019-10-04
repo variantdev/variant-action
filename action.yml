@@ -1,0 +1,8 @@
+name: 'Variant'
+description: 'Run Variant task defined in your Variantfile https://github.com/mumoshu/variant'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: octagon
+  color: orange
