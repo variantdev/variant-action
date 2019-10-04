@@ -13,7 +13,7 @@ script: |
   EOF
 ```
 
-Add the following action to your workflow:
+Add the following action to your workflow at `.github/workflows/main.yaml`:
 
 ```
 name: Do something
@@ -29,7 +29,7 @@ on:
 jobs:
   run:
     name: variant
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
     - uses: variantdev/variant-action@v0.3.4
