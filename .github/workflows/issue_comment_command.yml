@@ -16,5 +16,5 @@ jobs:
         VARIANT_WORKING_DIR: "."
         VARIANT_COMMENT: "true"
       with:
-        args: ${{ github.event.issue_comment.body }}
+        args: ${{ github.event.comment.body }}
       #if: startsWith(github.event.issue_comment.body, '/')
