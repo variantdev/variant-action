@@ -17,4 +17,4 @@ jobs:
         VARIANT_COMMENT: "true"
       with:
         args: ${{ github.event.issue_comment.body }}
-      if: startsWith(github.event.issue_comment.body, '/')
+      #if: startsWith(github.event.issue_comment.body, '/')
