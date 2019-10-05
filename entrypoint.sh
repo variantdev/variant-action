@@ -42,9 +42,9 @@ COMMENT="#### \`$VARIANT_NAME $*\` Status: ${SUCCESS}
 $OUTPUT
 \`\`\`
 <details>
-\`\`\``
+\`\`\`
 $DETAILED_OUTPUT
-\`\`\``
+\`\`\`
 </details>
 "
 PAYLOAD=$(echo '{}' | jq --arg body "$COMMENT" '.body = $body')
