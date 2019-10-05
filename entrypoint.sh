@@ -37,16 +37,29 @@ fi
 
 VARIANT_NAME=${variant:-variant}
 
-COMMENT="#### \`$VARIANT_NAME $*\` Status: ${SUCCESS}
-\`\`\`
-$OUTPUT
-\`\`\`
+if [ -z "$OUTPUT" ]; then
+  COMMENT="#### $VARIANT_NAME: \`$VARIANT_RUN\` completed. Status: ${SUCCESS}
 <details>
+
 \`\`\`
 $DETAILED_OUTPUT
 \`\`\`
 </details>
 "
+else
+  COMMENT="#### $VARIANT_NAME: \`$VARIANT_RUN\` completed. Status: ${SUCCESS}
+\`\`\`
+$OUTPUT
+\`\`\`
+<details>
+
+\`\`\`
+$DETAILED_OUTPUT
+\`\`\`
+</details>
+"
+fi
+
 PAYLOAD=$(echo '{}' | jq --arg body "$COMMENT" '.body = $body')
 
 # Try to report the error either via a pull request comment or an issue comment
