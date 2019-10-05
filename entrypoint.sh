@@ -13,10 +13,11 @@ git config --global user.name "${GITHUB_ACTOR}"
 cd "${VARIANT_WORKING_DIR:-.}"
 
 set +e
-variant "$@" 2>&1 | tee log.txt
+variant --output json "$@" 2>&1 | jq -RrcM '. as $line | try fromjson catch {"msg":$line}' | tee log.ndjson
 SUCCESS=${PIPESTATUS[0]}
-OUTPUT=$(cat log.txt)
-echo "$OUTPUT"
+OUTPUT=$(jq -r log.ndjson 'select(has("level") | not) | .msg')
+DETAILED_OUTPUT=$(jq -r log.ndjson '.msg')
+echo "$DETAILED_OUTPUT"
 set -e
 
 set -vx
@@ -39,7 +40,13 @@ VARIANT_NAME=${variant:-variant}
 COMMENT="#### \`$VARIANT_NAME $*\` Status: ${SUCCESS}
 \`\`\`
 $OUTPUT
-\`\`\`"
+\`\`\`
+<details>
+\`\`\``
+$DETAILED_OUTPUT
+\`\`\``
+</details>
+"
 PAYLOAD=$(echo '{}' | jq --arg body "$COMMENT" '.body = $body')
 
 # Try to report the error either via a pull request comment or an issue comment
