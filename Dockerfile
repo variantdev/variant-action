@@ -15,7 +15,7 @@ RUN apk add --update --no-cache bash curl git jq \
   slack-notifier@cloudposse \
   github-commenter@cloudposse
 
-ENV VARIANT_VERSION 0.35.0
+ENV VARIANT_VERSION 0.35.1
 
 RUN cd /usr/local/bin && \
   curl -L https://github.com/mumoshu/variant/releases/download/v${VARIANT_VERSION}/variant_{$VARIANT_VERSION}_linux_amd64.tar.gz | tar zxvf - && \
