@@ -15,8 +15,8 @@ cd "${VARIANT_WORKING_DIR:-.}"
 set +e
 variant --output json "$@" 2>&1 | jq -RrcM '. as $line | try fromjson catch {"msg":$line}' | tee log.ndjson
 SUCCESS=${PIPESTATUS[0]}
-OUTPUT=$(jq -r log.ndjson 'select(has("level") | not) | .msg')
-DETAILED_OUTPUT=$(jq -r log.ndjson '.msg')
+OUTPUT=$(jq -r 'select(has("level") | not) | .msg' log.ndjson)
+DETAILED_OUTPUT=$(jq -r '.msg' log.ndjson)
 echo "$DETAILED_OUTPUT"
 set -e
 

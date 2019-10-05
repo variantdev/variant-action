@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: variantdev/variant-action@v0.2.1
+    - uses: variantdev/variant-action@v0.2.2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         VARIANT_WORKING_DIR: "."
