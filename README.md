@@ -36,16 +36,19 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         VARIANT_WORKING_DIR: "."
-        VARIANT_COMMENT: "true"
+        VARIANT_GITHUB_COMMENT: "true"
+        VARIANT_RUN: ${{ github.event.comment.body }}
+        VARIANT_RUN_TRIM_PREFIX: /
       with:
-        #args: up --build --pull-request
+        args: --color=false
+      if: startsWith(github.event.comment.body, '/')
 ```
 
 ## Environment Variables
 
 *VARIANT_WORKIND_DIR*: Which directory `variant` runs in. Relative to the root of the repo. Default: `.`
 
-*VARIANT_COMMENT*: Set to "false" to disable commenting back on pull on error. Default: `true`
+*VARIANT_GITHUB_COMMENT*: Set to "false" to disable commenting back on pull on error. Default: `true`
 
 *VARIANT_NAME*: Name of your application that is shown in error messages sent via GitHub issue/pr comments. Default: `variant`
 

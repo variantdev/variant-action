@@ -14,7 +14,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         VARIANT_WORKING_DIR: "."
-        VARIANT_COMMENT: "true"
+        VARIANT_GITHUB_COMMENT: "true"
         VARIANT_RUN: ${{ github.event.comment.body }}
         VARIANT_RUN_TRIM_PREFIX: /
       with:
