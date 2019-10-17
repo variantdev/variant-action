@@ -12,6 +12,7 @@ ADD https://apk.cloudposse.com/ops@cloudposse.com.rsa.pub /etc/apk/keys/
 RUN echo "@cloudposse https://apk.cloudposse.com/3.8/vendor" >> /etc/apk/repositories
 
 RUN apk add --update --no-cache bash curl git jq \
+  docker-compose docker-cli \
   slack-notifier@cloudposse \
   github-commenter@cloudposse
 
